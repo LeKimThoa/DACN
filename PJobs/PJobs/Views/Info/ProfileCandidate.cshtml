@@ -1,0 +1,201 @@
+﻿@model PJobs.Models.UngVien
+@{
+    VIECLAMContext ctx = new VIECLAMContext();
+    var user = User.Identity.Name.ToString();
+    UngVien uv = ctx.UngViens.Where(qh => qh.Email == user).SingleOrDefault();
+    UngVien uvedit = ctx.UngViens.Where(x => x.MaUngVien == uv.MaUngVien).SingleOrDefault();
+    var uvid = uvedit.MaUngVien;
+    Layout = "_Layout1";
+
+}
+
+<!-- *** Call to Action Start *** -->
+<section class="section section-bg" id="call-to-action" style="background-image: url(~/wwwroot/images/teles);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="cta-content">
+                    <br>
+                    <br>
+                    <h2><em>Thông tin ứng viên</em></h2>
+                    <p style="color: #232d39">Bạn có thể thêm/ chỉnh sửa thông tin ở đây</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- *** Call to Action End *** -->
+<!-- *** Fleet Starts *** -->
+<section class="section" id="our-classes">
+    <div class="container">
+        <div class="main-body">
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="~/upload/@ViewBag.DSUV.AnhDaiDien" alt="Admin" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>@ViewBag.DSUV.Email</h4>
+                                    @Html.ActionLink("Upload your avatar", "index", "upload")
+                                    <br />
+                                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                                        <i class="fas fa-user-edit"></i>
+                                        <span>
+                                            Edit
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polygon points="12 2 19 21 12 17 5 21 12 2"></polygon></svg>Thành phố:</h6>
+                                <span class="text-secondary">@ViewBag.DSTP.TenThanhPho</span>
+                            </li>
+                            @*<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Quận huyện:</h6>
+                                <span class="text-secondary">@ViewBag.DSQH.TenQuan</span>
+                            </li>*@
+                            
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Họ Tên</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @ViewBag.DSUV.HoTen
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">CMND</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @ViewBag.DSUV.Cmnd
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Số điện thoại</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @ViewBag.DSUV.Sdt
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Địa chỉ</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @ViewBag.DSUV.DiaChiChiTiet
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Lượt Xem:</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @ViewBag.DSUV.LuotXem
+                                </div>
+                            </div>
+                            <hr>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- THÊM BLOG -->
+  @using (Html.BeginForm("SuaUngVien", "info", new { id = ViewBag.DSUV.MaUngVien}, FormMethod.Post )    )
+    {
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Bảng chỉnh sửa ứng viên</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+
+                                @Html.HiddenFor(m => m.MaUngVien)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Họ tên ứng viên</label>
+                                @Html.TextBoxFor(m => m.HoTen)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">SDT</label>
+                                @Html.TextBoxFor(m => m.Sdt)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">CMND</label>
+                                @Html.TextBoxFor(m => m.Cmnd)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Địa chỉ chi tiết</label>
+                                @Html.TextBoxFor(m => m.DiaChiChiTiet)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Quận huyện sinh sống</label>
+                                @Html.TextBoxFor(m => m.QuanHuyenSinhSong)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Thành phố sinh sống</label>
+                                @Html.TextBoxFor(m => m.ThanhPhoSinhSong)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Ảnh đại diện</label>
+                                @Html.TextBoxFor(m => m.AnhDaiDien)
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" id="form-submit" class="main-button">
+                            SAVE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</section>
+
+<!-- *** Fleet Ends *** -->
+<!-- jQuery -->
+<script src="assets/js/jquery-2.1.0.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="assets/js/popper.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- Plugins -->
+<script src="assets/js/scrollreveal.min.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
+<script src="assets/js/jquery.counterup.min.js"></script>
+<script src="assets/js/imgfix.min.js"></script>
+<script src="assets/js/mixitup.js"></script>
+<script src="assets/js/accordions.js"></script>
+
+<!-- Global Init -->
+<script src="assets/js/custom.js"></script>

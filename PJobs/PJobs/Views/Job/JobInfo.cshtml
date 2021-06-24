@@ -1,0 +1,111 @@
+﻿@model PJobs.Models.UngVienDangKy
+@{
+
+    Layout = "_Layout1";
+
+}
+<!-- *** Call to Action Start *** -->
+<section class="section section-bg" id="call-to-action" style="background-image: url(~/wwwroot/images/teles);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="cta-content">
+                    <br>
+                    <br>
+                    <h2><em>THÊM KĨ NĂNG MỚI</em></h2>
+                    <p style="color: #232d39">Từ giờ, bạn có thể đăng những công việc để ứng viên đăng ký! </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- *** Call to Action End *** -->
+<!-- *** Fleet Starts *** -->
+<section class="section" id="our-classes">
+    <div class="container">
+        <div class="main-body">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-12 ml-auto">
+                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                                    <i class="fas fa-upload"></i>
+                                    <span>Add</span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+
+                        <!-- /.row -->
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="card">
+
+                                    <!-- /.card-header -->
+                                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                                        <table class="table table-head-fixed text-nowrap">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Mã Đăng Kí</th>
+                                                    <th>Mã Ứng Viên</th>
+                                                    <th>Tình Trạng Ứng Viên</th>
+                                                    <th>Mã Tin Tuyển Dụng</th>
+                                                    <th>Ngày Đăng Ký</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in ViewBag.DSUVDK)
+                                                {
+
+                                                <tr data-widget="expandable-table" aria-expanded="false">
+                                                    <td>@item.MaDangKi</td>
+                                                    <td>@item.MaUngVien</td>
+                                                    <td>@item.TinhTrangUngVien</td>
+                                                    <td>@item.MaTinTuyenDung</td>
+                                                    <td>@item.NgayDangKy</td>
+                                                </tr>
+
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+        </div>
+    </div>
+    }
+</section>
+
+
+<!-- *** Fleet Ends *** -->
+<!-- jQuery -->
+<script src="assets/js/jquery-2.1.0.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="assets/js/popper.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- Plugins -->
+<script src="assets/js/scrollreveal.min.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
+<script src="assets/js/jquery.counterup.min.js"></script>
+<script src="assets/js/imgfix.min.js"></script>
+<script src="assets/js/mixitup.js"></script>
+<script src="assets/js/accordions.js"></script>
+
+<!-- Global Init -->
+<script src="assets/js/custom.js"></script>
